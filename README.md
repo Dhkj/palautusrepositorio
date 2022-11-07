@@ -1,3 +1,3 @@
 # palautusrepositorio
 
-https://github.com/Dhjk/ohtuvarasto
+https://github.com/Dhkj/ohtuvarasto
