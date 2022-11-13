@@ -8,13 +8,20 @@ from viitegeneraattori import Viitegeneraattori
 
 
 def main():
-    # kauppa = Kauppa()
+    viitegeneraattori = Viitegeneraattori()
+    kirjanpito = Kirjanpito()
+    varasto = Varasto(kirjanpito)
+    pankki = Pankki(kirjanpito)
 
+    # kauppa = Kauppa()
+    """
     kauppa = Kauppa(
         Varasto.get_instance(),
         Pankki.get_instance(),
         Viitegeneraattori.get_instance()
     )
+    """
+    kauppa = Kauppa(varasto, pankki, viitegeneraattori)
 
     # kauppa hoitaa yhden asiakkaan kerrallaan seuraavaan tapaan:
     kauppa.aloita_asiointi()
@@ -33,9 +40,12 @@ def main():
     kauppa.tilimaksu("Arto Vihavainen", "3425-1652")
 
     # kirjanpito
+    """
     for tapahtuma in Kirjanpito.get_instance().tapahtumat:
         print(tapahtuma)
-
+    """
+    for tapahtuma in kirjanpito.tapahtumat:
+        print(tapahtuma)
 
 if __name__ == "__main__":
     main()
