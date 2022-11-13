@@ -1,6 +1,6 @@
 from tuote import Tuote
 from kirjanpito import Kirjanpito
-
+from kirjanpito import the_kirjanpito_olio
 
 class Varasto:
     # __instanssi = None
@@ -18,7 +18,13 @@ class Varasto:
         self._saldot = {}
         self._alusta_tuotteet()
     """
+    """
     def __init__(self, kirjanpito):
+        self._kirjanpito = kirjanpito
+        self._saldot = {}
+        self._alusta_tuotteet()
+    """
+    def __init__(self, kirjanpito=the_kirjanpito_olio):
         self._kirjanpito = kirjanpito
         self._saldot = {}
         self._alusta_tuotteet()
@@ -57,3 +63,5 @@ class Varasto:
         self._saldot[Tuote(3, "Sierra Nevada Pale Ale", 5)] = 30
         self._saldot[Tuote(4, "Mikkeller not just another Wit", 7)] = 40
         self._saldot[Tuote(5, "Weihenstephaner Hefeweisse", 4)] = 15
+
+the_varasto_olio = Varasto()

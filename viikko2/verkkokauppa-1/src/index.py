@@ -6,14 +6,16 @@ from pankki import Pankki
 from ostoskori import Ostoskori
 from viitegeneraattori import Viitegeneraattori
 
+from kirjanpito import the_kirjanpito_olio
 
 def main():
+    """
     viitegeneraattori = Viitegeneraattori()
     kirjanpito = Kirjanpito()
     varasto = Varasto(kirjanpito)
     pankki = Pankki(kirjanpito)
-
-    # kauppa = Kauppa()
+    """
+    kauppa = Kauppa()
     """
     kauppa = Kauppa(
         Varasto.get_instance(),
@@ -21,8 +23,9 @@ def main():
         Viitegeneraattori.get_instance()
     )
     """
+    """
     kauppa = Kauppa(varasto, pankki, viitegeneraattori)
-
+    """
     # kauppa hoitaa yhden asiakkaan kerrallaan seuraavaan tapaan:
     kauppa.aloita_asiointi()
     kauppa.lisaa_koriin(1)
@@ -44,7 +47,11 @@ def main():
     for tapahtuma in Kirjanpito.get_instance().tapahtumat:
         print(tapahtuma)
     """
+    """
     for tapahtuma in kirjanpito.tapahtumat:
+        print(tapahtuma)
+    """
+    for tapahtuma in the_kirjanpito_olio.tapahtumat:
         print(tapahtuma)
 
 if __name__ == "__main__":
