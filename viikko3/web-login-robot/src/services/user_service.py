@@ -35,7 +35,7 @@ class UserService:
         )
 
         return user
-
+    """
     def validate(self, username, password, password_confirmation):
         if not username or not password:
             raise UserInputError("Username and password are required")
@@ -52,6 +52,31 @@ class UserService:
 
         if password != password_confirmation:
             raise UserInputError("Nonmatching Password And Password Confirmation")
+    """
+
+    def validate(self, username, password, password_confirmation):
+        if not username or not password:
+            raise UserInputError("Username and password are required")
+
+        # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+        if self._user_repository.find_by_username(username) != None:
+            raise UserInputError("Username already exists")
+
+        if len(username) < 3:
+            raise UserInputError("Username too short")
+        # TESTI KAYTTAJATUNNUS OLEMASSA
+        if not re.match("^[a-z]+$", username):
+            raise UserInputError("Username invalid")
+
+        if len(password) < 8:
+            raise UserInputError("Password too short")
+
+        if not (re.match(".*[^a-z].*", password, re.I)):
+            raise UserInputError("Password invalid")
+
+        if password != password_confirmation:
+            raise UserInputError("Nonmatching Password And Password Confirmation")
+
 
 
 user_service = UserService()
