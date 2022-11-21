@@ -38,26 +38,17 @@ class UserService:
             raise UserInputError("Username and password are required")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
-        #if not re.match("^[a-z]+$", "kalle"):
         if self._user_repository.find_by_username(username) != None:
             raise UserInputError("Username already exists")
 
         if len(username) < 3:
             raise UserInputError("Username too short")
-        """
-        if not re.match("^[a-z]\d{3,}$", username):
-            raise UserInputError("Username invalid")
-        """
+        # TESTI KAYTTAJATUNNUS OLEMASSA
         if not re.match("^[a-z]+$", username):
             raise UserInputError("Username invalid")
 
         if len(password) < 8:
             raise UserInputError("Password too short")
-        """
-        if not re.match("[^(a-z|A-Z)]", password):
+
+        if not (re.match(".*[^a-z].*", password, re.I)):
             raise UserInputError("Password invalid")
-        """
-        """
-        if not re.match("[^a-z]\w", password):
-            raise UserInputError("Password invalid")
-        """
