@@ -72,10 +72,29 @@ class IntJoukko:
             return True
 
         if not self.kuuluu(alkio):                      #ko_alkio_int_joukkoon(alkio):
+
+            print("#")
+            print(not self.kuuluu(alkio))
+            print(alkio)
+            print()
+
             if self.int_lukujonon_kapasiteetti_on_taynna():
+
+                print("##")
+                print(self.int_lukujonon_kapasiteetti_on_taynna())
+                print()
+
+
                 self.lukujono = self.luo_uusi_lukujono_kasvatuskoon_lisaamalla_kapasiteetilla()
+                #self.kapasiteetti += self.kapasiteetti
+                self.kapasiteetti += self.kasvatuskoko
             
-            self.lukujono[self.alkioiden_lkm] = alkio
+            print("###")
+            print(self.to_int_list())
+            print(self.alkioiden_lkm)
+            print()
+
+            self.lukujono[self.alkioiden_lkm] = alkio       #INDEX ERROR?
             self.alkioiden_lkm = self.alkioiden_lkm + 1
 
             return True
@@ -86,8 +105,10 @@ class IntJoukko:
 
 
     def siirra_int_joukon_alkioita_oikealta_indeksiin(self, indeksi):
-        for j in range(indeksi, self.alkioiden_lkm - 2): # - 1 ?
+        for j in range(indeksi, self.alkioiden_lkm - 1): # - 1 ?
                 self.lukujono[j] = self.lukujono[j + 1]
+
+        self.lukujono[self.alkioiden_lkm - 1] = 0
         
         self.alkioiden_lkm = self.alkioiden_lkm - 1 # Tässä ok?
 
@@ -114,6 +135,19 @@ class IntJoukko:
 
         return False
 
+
+
+    def mahtavuus(self):
+        return self.alkioiden_lkm
+
+    ##?
+    def to_int_list(self):
+        taulu = [0] * self.alkioiden_lkm
+
+        for i in range(0, len(taulu)):
+            taulu[i] = self.lukujono[i]
+
+        return taulu
 
 
 
@@ -266,7 +300,7 @@ class IntJoukko:
             taulu[i] = self.ljono[i]
 
         return taulu
-
+#
     @staticmethod
     def yhdiste(a, b):
         x = IntJoukko()
