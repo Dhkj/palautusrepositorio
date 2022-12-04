@@ -79,13 +79,13 @@ class Kayttoliittyma:
         komento_olio.suorita()
         self._kumoa_painike["state"] = constants.NORMAL
 
-        if self._sovelluslogiikka.tulos == 0:
+        if  self._sovelluslogiikka.tulos[len(self._sovelluslogiikka.tulos) - 1] == 0: #           self._sovelluslogiikka.tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
         else:
             self._nollaus_painike["state"] = constants.NORMAL
 
         self._syote_kentta.delete(0, constants.END)
-        self._tulos_var.set(self._sovelluslogiikka.tulos)
+        self._tulos_var.set(self._sovelluslogiikka.tulos[len(self._sovelluslogiikka.tulos) - 1]) #self._sovelluslogiikka.tulos)
 
 
 class Summa:
@@ -112,10 +112,13 @@ class Nollaus:
     def suorita(self):
         self.sovelluslogiikka.nollaa()
 
+#
 class Kumoa:
     def __init__(self, sovelluslogiikka, funktio):
         self.sovelluslogiikka = sovelluslogiikka
         self.funktio = funktio
 
     def suorita(self):
-        pass
+        if len(self.sovelluslogiikka.tulos) > 1:
+            self.sovelluslogiikka.tulos.pop()
+        #pass
