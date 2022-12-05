@@ -151,6 +151,73 @@ class IntJoukko:
 
 
 
+
+
+    @staticmethod
+    def yhdiste(joukko_a, joukko_b):
+        yhdiste_joukko = IntJoukko()
+        #x = IntJoukko()
+        a_taulu = joukko_a.to_int_list()
+        b_taulu = joukko_b.to_int_list()
+
+        for i in range(0, len(a_taulu)):
+            yhdiste_joukko.lisaa(a_taulu[i])
+
+        for i in range(0, len(b_taulu)):
+            yhdiste_joukko.lisaa(b_taulu[i])
+
+        return yhdiste_joukko
+
+    @staticmethod
+    def leikkaus(joukko_a, joukko_b):
+        leikkaus_joukko = IntJoukko()
+        a_taulu = joukko_a.to_int_list()
+        b_taulu = joukko_b.to_int_list()
+
+        for i in range(0, len(a_taulu)):
+            for j in range(0, len(b_taulu)):
+                if a_taulu[i] == b_taulu[j]:
+                    leikkaus_joukko.lisaa(b_taulu[j])
+
+        return leikkaus_joukko
+
+    @staticmethod
+    def erotus(joukko_a, joukko_b):
+        erotus_joukko = IntJoukko()
+        a_taulu = joukko_a.to_int_list()
+        b_taulu = joukko_b.to_int_list()
+
+        for i in range(0, len(a_taulu)):
+            erotus_joukko.lisaa(a_taulu[i])
+
+        for i in range(0, len(b_taulu)):
+            erotus_joukko.poista(b_taulu[i])
+
+        return erotus_joukko
+
+    def __str__(self):
+        if self.alkioiden_lkm == 0:
+            return "{}"
+        elif self.alkioiden_lkm == 1:
+            return "{" + str(self.lukujono[0]) + "}"
+        else:
+            tuotos = "{"
+            for i in range(0, self.alkioiden_lkm - 1):
+                tuotos = tuotos + str(self.lukujono[i])
+                tuotos = tuotos + ", "
+            tuotos = tuotos + str(self.lukujono[self.alkioiden_lkm - 1])
+            tuotos = tuotos + "}"
+            return tuotos
+
+
+
+
+
+
+
+
+
+
         """
         kohta = -1
         apu = 0
