@@ -112,7 +112,7 @@ class Nollaus:
     def suorita(self):
         self.sovelluslogiikka.nollaa()
 
-#
+# Toteutettu lista ja kumous-toiminto rajattoman monta kertaa.
 class Kumoa:
     def __init__(self, sovelluslogiikka, funktio):
         self.sovelluslogiikka = sovelluslogiikka
