@@ -3,10 +3,6 @@ from kps_tekoaly import KPSTekoaly
 from kps_parempi_tekoaly import KPSParempiTekoaly
 
 class Peli:
-    """
-    def __init__():
-        pass
-    """
     @staticmethod
     def luo_peli_ihmista_vastaan():
         return KPSPelaajaVsPelaaja()
